@@ -1,0 +1,7 @@
+.venv
+*/tmp/*.csv
+practice/tmp/
+emotion/*/*.h5
+signlanguage/tmp/test
+signlanguage/tmp/train
+signlanguage/models
