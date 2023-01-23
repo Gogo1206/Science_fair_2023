@@ -1,0 +1,98 @@
+2023-01-23 16:19:46.844309: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-23 16:19:47.185723: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9426 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3080 Ti, pci bus id: 0000:01:00.0, compute capability: 8.6
+
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+ conv2d (Conv2D)             (None, 28, 28, 128)       1280
+
+ dropout (Dropout)           (None, 28, 28, 128)       0
+
+ batch_normalization (BatchN  (None, 28, 28, 128)      512
+ ormalization)
+
+ conv2d_1 (Conv2D)           (None, 28, 28, 64)        73792
+
+ dropout_1 (Dropout)         (None, 28, 28, 64)        0
+
+ batch_normalization_1 (Batc  (None, 28, 28, 64)       256
+ hNormalization)
+
+ flatten (Flatten)           (None, 50176)             0
+
+ dense (Dense)               (None, 4096)              205524992
+
+ dropout_2 (Dropout)         (None, 4096)              0
+
+ dense_1 (Dense)             (None, 256)               1048832
+
+ dropout_3 (Dropout)         (None, 256)               0
+
+ dense_2 (Dense)             (None, 26)                6682
+
+=================================================================
+Total params: 206,656,346
+Trainable params: 206,655,962
+Non-trainable params: 384
+_________________________________________________________________
+Epoch 1/10
+2023-01-23 16:19:49.003014: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8100
+2023-01-23 16:19:50.043045: I tensorflow/stream_executor/cuda/cuda_blas.cc:1614] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+859/859 [==============================] - 41s 46ms/step - loss: 2.7522 - accuracy: 0.1872 - val_loss: 1.8233 - val_accuracy: 0.3814 - lr: 0.0010
+Epoch 2/10
+859/859 [==============================] - 14s 16ms/step - loss: 1.6382 - accuracy: 0.4324 - val_loss: 0.9393 - val_accuracy: 0.6695 - lr: 0.0010
+Epoch 3/10
+859/859 [==============================] - 13s 15ms/step - loss: 1.0302 - accuracy: 0.6308 - val_loss: 0.4821 - val_accuracy: 0.8054 - lr: 0.0010
+Epoch 4/10
+859/859 [==============================] - 13s 15ms/step - loss: 0.6658 - accuracy: 0.7737 - val_loss: 0.2006 - val_accuracy: 0.9231 - lr: 0.0010
+Epoch 5/10
+859/859 [==============================] - 13s 16ms/step - loss: 0.4435 - accuracy: 0.8565 - val_loss: 0.1942 - val_accuracy: 0.9346 - lr: 0.0010
+Epoch 6/10
+859/859 [==============================] - 13s 16ms/step - loss: 0.3006 - accuracy: 0.9060 - val_loss: 0.1846 - val_accuracy: 0.9593 - lr: 0.0010
+Epoch 7/10
+859/859 [==============================] - 13s 16ms/step - loss: 0.2346 - accuracy: 0.9288 - val_loss: 0.0500 - val_accuracy: 0.9836 - lr: 0.0010
+Epoch 8/10
+859/859 [==============================] - 13s 16ms/step - loss: 0.1996 - accuracy: 0.9451 - val_loss: 0.0845 - val_accuracy: 0.9709 - lr: 0.0010
+Epoch 9/10
+857/859 [============================>.] - ETA: 0s - loss: 0.1714 - accuracy: 0.9521 
+Epoch 9: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+859/859 [==============================] - 13s 16ms/step - loss: 0.1715 - accuracy: 0.9521 - val_loss: 0.0885 - val_accuracy: 0.9760 - lr: 0.0010
+Epoch 10/10
+859/859 [==============================] - 13s 16ms/step - loss: 0.0834 - accuracy: 0.9749 - val_loss: 0.0155 - val_accuracy: 0.9961 - lr: 5.0000e-04
+Best Validation Accuracy Score 0.99610, is for epoch 10
+225/225 [==============================] - 1s 2ms/step
+
+              precision    recall  f1-score   support
+
+     Class A       1.00      1.00      1.00       331
+     Class B       1.00      1.00      1.00       432
+     Class C       1.00      1.00      1.00       310
+     Class D       1.00      1.00      1.00       245
+     Class E       1.00      1.00      1.00       498
+     Class F       1.00      1.00      1.00       247
+     Class G       0.99      1.00      1.00       348
+     Class H       1.00      1.00      1.00       436
+     Class I       0.94      1.00      0.97       288
+     Class J       1.00      1.00      1.00         1
+     Class K       1.00      0.98      0.99       331
+     Class L       1.00      1.00      1.00       209
+     Class M       1.00      1.00      1.00       394
+     Class N       1.00      1.00      1.00       291
+     Class O       1.00      1.00      1.00       246
+     Class P       1.00      1.00      1.00       347
+     Class Q       1.00      1.00      1.00       164
+     Class R       0.97      1.00      0.98       144
+     Class S       1.00      1.00      1.00       246
+     Class T       1.00      1.00      1.00       248
+     Class U       1.00      1.00      1.00       266
+     Class V       1.00      1.00      1.00       346
+     Class W       1.00      1.00      1.00       206
+     Class X       1.00      1.00      1.00       267
+     Class Y       1.00      0.94      0.97       332
+     Class Z       0.00      0.00      0.00         1
+
+    accuracy                           1.00      7174
+   macro avg       0.96      0.96      0.96      7174
+weighted avg       1.00      1.00      1.00      7174
