@@ -49,20 +49,20 @@ datagen.fit(train_img)
 
 learning_rate_reduction = ReduceLROnPlateau(monitor='val_accuracy', patience = 2, verbose=1,factor=0.5, min_lr=0.00001)
 model = Sequential([
-    Conv2D(128 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu' , input_shape = (28,28,1)),
+    Conv2D(128, (3,3), strides = 1, padding = 'same', activation = 'relu', input_shape = (28,28,1)),
     Dropout(0.25),
     BatchNormalization(),
-    # MaxPooling2D((2,2) , strides = 2 , padding = 'same'),
-    Conv2D(64 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu'),
+    # MaxPooling2D((2,2), strides = 2, padding = 'same'),
+    Conv2D(64, (3,3), strides = 1, padding = 'same', activation = 'relu'),
     Dropout(0.25),
     BatchNormalization(),
-    # MaxPooling2D((2,2) , strides = 2 , padding = 'same'),
+    # MaxPooling2D((2,2), strides = 2, padding = 'same'),
     Flatten(),
-    Dense(units = 4096 , activation = 'relu'),
+    Dense(units = 4096, activation = 'relu'),
     Dropout(0.25),
-    Dense(units = 256 , activation = 'relu'),
+    Dense(units = 256, activation = 'relu'),
     Dropout(0.25),
-    Dense(units = 26 , activation = 'softmax'),
+    Dense(units = 26, activation = 'softmax'),
 ])
 
 model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
@@ -70,7 +70,7 @@ model.summary()
 
 train = model.fit(datagen.flow(train_img, train_labels, batch_size = 32), epochs = 10, validation_data = (test_img, test_labels), callbacks = [learning_rate_reduction])
 
-model.save("./signlanguage/models/model2.h5")
+model.save("./signlanguage/models/model.h5")
 
 def plot_results(train):
     acc = train.history['accuracy']
@@ -96,6 +96,7 @@ def plot_results(train):
     plt.xlabel('Epoch')
     plt.show()
  
+plot_results(train)
 # print best epoch with best accuracy on validation
 
 def get_best_epcoh(train):
@@ -106,12 +107,11 @@ def get_best_epcoh(train):
     return best_epoch
 
 best_epoch = get_best_epcoh(train)
-plot_results(train)
 
 prediction = model.predict(test_img).argmax(axis=-1)
 print(classification_report(test_labels.argmax(axis=-1), prediction, target_names = ["Class " + labels[i] for i in range(len(labels))]))
 
 cm = confusion_matrix(test_labels.argmax(axis=-1),prediction)
 plt.figure(figsize = (15, 15))
-sns.heatmap(cm,cmap= "Blues", linecolor = 'black' , linewidth = 1 , annot = True, fmt='')
+sns.heatmap(cm,cmap= "flare", linecolor = 'black' , linewidth = 0 , annot = False, fmt='')
 plt.show()

@@ -8,10 +8,10 @@ from keras.utils import img_to_array
 import os
 
 
-labels = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 model = load_model('./signlanguage/models/model.h5')
-# model.summary()
+model.summary()
 
 for file in os.listdir("./signlanguage/tmp/test1/"):
     if file.endswith('.jpg'):
@@ -28,4 +28,4 @@ for file in os.listdir("./signlanguage/tmp/test1/"):
         prediction = model.predict(img)
         print(prediction)
         text_idx=np.argmax(prediction)
-        print("Predicted character: " , labels[text_idx] , " with condidence of ", int(prediction[0][text_idx]*100),"%")
+        print("Predicted character: " , labels[text_idx] , " with confidence of ", int(prediction[0][text_idx]*100),"%")
