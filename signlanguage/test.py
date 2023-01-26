@@ -10,7 +10,7 @@ import os
 
 labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-model = load_model('./signlanguage/models/model2.h5')
+model = load_model('./signlanguage/models/model3.h5') #3>1>2
 # model.summary()
 
 for file in os.listdir("./signlanguage/tmp/test1/"):
@@ -28,4 +28,4 @@ for file in os.listdir("./signlanguage/tmp/test1/"):
         prediction = model.predict(img)
         # print(prediction)
         text_idx=np.argmax(prediction)
-        print("Predicted character: " , labels[text_idx] , " with confidence of ", int(prediction[0][text_idx]*100),"%")
+        print("Predicted character: ", labels[text_idx], " with confidence of ", int(prediction[0][text_idx]*100),"%")

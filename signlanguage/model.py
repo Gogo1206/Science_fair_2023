@@ -20,8 +20,8 @@ test_labels = label_binarizer.fit_transform(test_labels)
 train_img = (df_train.drop(['label'] , axis=1).values / 255.0).reshape(-1, 28, 28, 1)
 test_img = (df_test.drop(['label'] , axis=1).values / 255.0).reshape(-1, 28, 28, 1)
 
-# print(df_train.shape)
-# print(df_test.shape)
+print(df_train.shape)
+print(df_test.shape)
 
 labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
@@ -46,17 +46,18 @@ datagen = ImageDataGenerator( # Data Augmentation
 )
 datagen.fit(train_img)
 
-
 learning_rate_reduction = ReduceLROnPlateau(monitor='val_accuracy', patience = 2, verbose=1,factor=0.5, min_lr=0.00001)
 model = Sequential([
-    Conv2D(128, (3,3), strides = 1, padding = 'same', activation = 'relu', input_shape = (28,28,1)),
+    Conv2D(256, (3,3), strides = 1, padding = 'same', activation = 'relu', input_shape = (28,28,1)),
     Dropout(0.25),
     BatchNormalization(),
     # MaxPooling2D((2,2), strides = 2, padding = 'same'),
+    Conv2D(128, (3,3), strides = 1, padding = 'same', activation = 'relu'),
+    Dropout(0.25),
+    BatchNormalization(),
     Conv2D(64, (3,3), strides = 1, padding = 'same', activation = 'relu'),
     Dropout(0.25),
     BatchNormalization(),
-    # MaxPooling2D((2,2), strides = 2, padding = 'same'),
     Flatten(),
     Dense(units = 4096, activation = 'relu'),
     Dropout(0.25),
@@ -68,9 +69,9 @@ model = Sequential([
 model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
 model.summary()
 
-train = model.fit(datagen.flow(train_img, train_labels, batch_size = 32), epochs = 10, validation_data = (test_img, test_labels), callbacks = [learning_rate_reduction])
+train = model.fit(datagen.flow(train_img, train_labels, batch_size = 64), epochs = 15, validation_data = (test_img, test_labels), callbacks = [learning_rate_reduction])
 
-model.save("./signlanguage/models/model.h5")
+model.save("./signlanguage/models/model3.h5")
 
 def plot_results(train):
     acc = train.history['accuracy']

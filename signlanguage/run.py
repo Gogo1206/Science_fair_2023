@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 labels = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-model = load_model('./signlanguage/models/model2.h5')
-# model.summary()
+model = load_model('./signlanguage/models/model3.h5')
+model.summary()
 
 mphands = mp.solutions.hands
 hands = mphands.Hands()
