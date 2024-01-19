@@ -5,3 +5,4 @@ emotion/*/*.h5
 signlanguage/tmp/test
 signlanguage/tmp/train
 signlanguage/models
+*/tmp
